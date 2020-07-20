@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="ToDoApp">
+    <head lang="en">
+        <title> to do list</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>  
+    <script src="/public/javascripts/app.js"></script>
+    
+    <style>
+        #container{
+            width: 500px;
+            margin: 100px auto;
+        }
+        .done{
+            color : #ccc;
+            text-decoration: line-through;
+        }
+        li,ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+    
+    </head>
+    <body>
+         <div id="container" ng-controller = "ToDoController"> 
+             <ul>
+                 <li ng-repeat="todo in todos">
+                     <input  type="checkbox" ng-model="todo.isDone"> {{todo.ad}}</input></li>
+                 <span ng-class= "{'done' : todo.isDone}">{{todo.ad}}</span>
+             </ul>
+             <br>
+             <table>
+                 <td>
+                    <button ng-disabled="frm.$invalid" class="btn btn-info ">Ekle</button>
+                    <button class="btn btn-danger" ng-click="DeleteTodos()">Yapılanları Sil</button>
+                 </td>
+             </table>
+             
+             <br> 
+             <form  ng-submit="NewToDo()" name="frm" novalidate>
+                 <br>
+                 <input type="text" ng-model="todo" class="form-control" required placeholder="yeni iş ekle">
+                 <br>
+
+             </form>
+
+         </div>
+    </body>
+</html>
